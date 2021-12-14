@@ -22,7 +22,7 @@ int main()
     printf("ERROR");
     return 0;
   }
-  //	
+  
   printf("Введите минимальный элемент:\t");		 
   scanf_s("  \t%f", &min);							            
                                                 
