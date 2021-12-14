@@ -5,67 +5,73 @@
 
 int main()
 {
-	setlocale(LC_ALL, "Rus");
+  setlocale(LC_ALL, "Rus");
 
-  int N = 0, i = 0,  mant = 0;
-  float x = 0.0, drob = 0.0, min = 0.0, max = 0.0;
-	float* mas;
+  int N = 0, i = 0, mant = 0;
+  float x = 0.0f, drob = 0.0f, min = 0.0f, max = 0.0f;
+  float* mas;
   int* mantissa;
   long double sum = 0.0;
 
 
-	printf("Введите кол-во элементов:\t");			  
-	scanf_s("  \t%d", &N);		
-  
-  if (N <= 0)				
-  {							                   
-    printf("ERROR");		            
-    return 0;				                
+  printf("Введите кол-во элементов:\t");
+  scanf_s("  \t%d", &N);
+
+  if (N <= 0)
+  {
+    printf("ERROR");
+    return 0;
   }
-													                      //	
-	printf("Введите минимальный элемент:\t");		  //	Ввод значений пользователем
-	scanf_s("  \t%f", &min);							            //
-													                      //
-	printf("Введите максимальный элемент:\t");		//
-	scanf_s("  \t%f", &max);
+  //	
+  printf("Введите минимальный элемент:\t");		 
+  scanf_s("  \t%f", &min);							            
+                                                
+  printf("Введите максимальный элемент:\t");		
+  scanf_s("  \t%f", &max);
 
 
-	if (min >= max)				
-	{							                   
-		printf("ERROR");		            
-		return 0;				               
-	}							                    
+  if (min >= max)
+  {
+    printf("ERROR");
+    return 0;
+  }
 
 
-	mas = (float*)malloc(N * sizeof(float));
+  mas = (float*)malloc(N * sizeof(float));
   mantissa = (int*)malloc(N * sizeof(int));
-
-	for (i = 0; i < N; i++)
-	{
-    
-		x = (((float)rand())/ RAND_MAX) * (max - min) + min;		//	создание вещесвенного числа 	
-		mas[i] = x;                                             //	в заданном диапазоне
-
-		drob = x - (int)x;				      //  дробная часть 
-
-		drob = drob * 1000000;	
-    mant = (int)drob;               //	мантисса 
-    
-    mantissa[i] = mant;
-
-	}
 
   for (i = 0; i < N; i++)
   {
-    if ((mantissa[i] < N) && (mantissa[i] >= 0))
-      sum -= mas[i];
-    else
-      sum += mas[i];
+
+    x = (((float)rand()) / RAND_MAX) * (max - min) + min;			
+    mas[i] = x;                                             
+
+    drob = x - (int)x;				      
+
+    drob = drob * 1000000;
+    mant = (int)drob;              
+
+    mantissa[i] = mant;
+
   }
 
-	printf("Полученная сумма:\t%f", sum);
+  for (i = 0; i < N; i++)
+  {
+    if (mantissa[i] < N)
+    {
+      sum -= mas[mantissa[i]] = 0.0f;
+    }
+  }
 
-	free(mas);
+  for (i = 0; i < N; i++)
+  {
+    sum += mas[i];
+  }
 
-	return 0;
+  printf("Полученная сумма:\t%f", sum);
+
+  free(mas);
+  free(mantissa);
+
+  return 0;
 }
