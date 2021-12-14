@@ -59,7 +59,8 @@ int main()
   {
     if (mantissa[i] < N)
     {
-      sum -= mas[mantissa[i]] = 0.0f;
+      sum -= mas[mantissa[i]];
+      mas[mantissa[i]] = 0;
     }
   }
 
